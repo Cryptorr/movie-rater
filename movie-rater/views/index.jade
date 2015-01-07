@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h2(class="home-span")
+    span(class="label label-success") &#9650; Popular Movies &#9650;
+  div(class="movie-gallery container-fluid", id="content")
+    div(class="gallery-wrap home-gallery")
+      div(class="gallery clearfix", id="movie-results")
+      div(class="gallery__controls clearfix", role="group", aria-label="Controls")
+        button(type="button", class="btn btn-default gallery__controls-prev")
+          span(class="glyphicon glyphicon-chevron-left", aria-hidden="true")
+        button(type="button", class="btn btn-default gallery__controls-next")
+          span(class="glyphicon glyphicon-chevron-right", aria-hidden="true")
