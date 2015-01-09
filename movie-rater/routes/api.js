@@ -6,7 +6,7 @@ var https = require('https');
 
 var mongoose = require('mongoose');
 //Setup db
-var uristring = ''; //DB url
+var uristring = 'mongodb://admin:V04L1jx6yl2nXIKreaKg@ds029541.mongolab.com:29541/movierater'; //DB url
 //Connect to db
 mongoose.connect(uristring, function (err, res) {
   if (err) {
