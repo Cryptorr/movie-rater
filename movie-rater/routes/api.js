@@ -32,7 +32,7 @@ router.route('/movies')
     res.send({ message: 'Movie Added', data: movie });
     });
   })
-  //Get all images from db
+  //Get all movies from db
   .get(function(req, res) {
     Movie.find(function(err, movies) {
       if (err)
@@ -96,6 +96,14 @@ router.route('/comment')
       }
 
       res.send({ message: 'Comment Added', data: comment });
+    });
+  })
+  .get(function(req, res) {
+    Comment.find(function(err, comments) {
+      if (err)
+        return res.send(err);
+
+      res.json(comments);
     });
   });
 
