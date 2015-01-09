@@ -1,25 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var querystring = require('querystring');
-var https = require('https');
+var http = require('http');
 
 var APIKEY = 'a283f3647d2484cd1b3dad05152d7766';
 
 function movieDB(data, cb){
 
-	var host = 'https://api.themoviedb.org';
-	var endpoint = '/3/genre/movie/list';
+	var host = 'api.themoviedb.org';
+	var endpoint = '/3/discover/movie';
 	endpoint += '?api_key=' + APIKEY;
 	endpoint += '&' + querystring.stringify(data);
 
-
 	var options = {
-	host: host,
-	path: endpoint,
-	method: 'GET'
+		host: host,
+		path: endpoint,
+		method: 'get'
 	};
 
-	var req = https.request(options, function(res) {
+	var req = http.get(options, function(res) {
 		res.setEncoding('utf-8');
 
 		var responseString = '';
@@ -32,6 +31,10 @@ function movieDB(data, cb){
 		  //console.log(responseString);
 		  var responseObject = JSON.parse(responseString);
 		  cb(responseObject);
+		});
+
+		res.on('error', function(e){
+			console.log('problem with request: ' + e.message);
 		});
 	});
 }
@@ -48,8 +51,8 @@ router.get('/browse', function(req, res) {
 
 router.route('/browse')
   .post(function(req, res){
-  	movieDB(req.body, function(res){
-  		console.log(res);
+  	movieDB(req.body, function(data){
+  		return res.json(data);
   	});
 });
 
