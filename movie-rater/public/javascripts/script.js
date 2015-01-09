@@ -74,7 +74,7 @@ $(window).load(function(){
     });
   }
 
-  // Search imgur for related pictures
+  // Search movieDB for related pictures
   $('#imagesearch').bind('input propertychange', function() {
     document.location.hash = escape($('#imagesearch').val());
     if(document.location.hash.length > 0){
