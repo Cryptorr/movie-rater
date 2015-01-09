@@ -19,20 +19,20 @@ function serverRequest(endpoint, method, json, success){
 
 function refreshHome(data){
   //Fill with Images
-  $.each(data, function(i,data){
-    if(!data.is_album){
-    $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + data.poster).attr("class", "gallery__img").attr("alt", "")
-    .one('load',function() {
-      //Change gallery width on image load
-      totalWidth = totalWidth + $(this).parent().parent().outerWidth(true);
-      $(".gallery").width(totalWidth);
-      maxScrollPosition = totalWidth - $(".gallery-wrap").outerWidth();
-    }).appendTo(
-      $("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + data.title)
-      .appendTo(
-        $("<div/>").attr("class", "gallery__item").attr("data-content", data.upvotes + ' upvotes')
-        .appendTo("#movie-results")));
-    }
+  $.each(data.results, function(i,results){
+    if(results.poster_path){
+      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w130' + results.poster_path).attr("class", "gallery__img").attr("alt", "")
+      .one('load',function() {
+        //Change gallery width on image load
+        totalWidth = totalWidth + $(this).parent().parent().outerWidth(true);
+        $(".gallery").width(totalWidth);
+        maxScrollPosition = totalWidth - $(".gallery-wrap").outerWidth();
+      }).appendTo(
+        $("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + results.id)
+        .appendTo(
+          $("<div/>").attr("class", "gallery__item")
+          .appendTo("#movie-results")));
+      }
     if ( i == 49 ) return false;
   });
 
@@ -59,6 +59,32 @@ function toGalleryItem(targetItem){
 };
 
 $(window).load(function(){
+   //Check url hash
+  if(document.location.hash.length > 0){
+    //If url contains an hash string
+    $('#imagesearch').val(unescape(document.location.hash.substring(1)));
+    //Request images from api
+    var data = {query : unescape(document.location.hash.substring(1))};
+    serverRequest('/browse', 'POST', data, function(d){
+      //Load new images
+      refreshHome(d);
+    });
+  }
+
+  // Search imgur for related pictures
+  $('#imagesearch').bind('input propertychange', function() {
+    document.location.hash = escape($('#imagesearch').val());
+    if(document.location.hash.length > 0){
+      //console.log($('#imagesearch').val());
+      var data = {
+        query : $('#imagesearch').val()
+      };
+      serverRequest('/browse', 'POST', data, function(d){
+        //Load new images
+        refreshHome(d);
+      });
+    }
+  });
 
   // When the prev button is clicked
   $(".gallery__controls-prev").click(function(){
