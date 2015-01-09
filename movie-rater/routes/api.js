@@ -17,6 +17,7 @@ mongoose.connect(uristring, function (err, res) {
 });
 //Get models
 var Movie = require('../models/movie');
+var Comment = require('../models/comment');
 
 // Restricted api:
 router.route('/movies')
@@ -28,7 +29,7 @@ router.route('/movies')
     if (err)
       return res.send(err);
 
-    res.send({ message: 'Movie Added' });
+    res.send({ message: 'Movie Added', data: movie });
     });
   })
   //Get all images from db
@@ -82,6 +83,31 @@ router.route('/movies/:id')
 
         res.json({ message: 'Movies updated!' });
       });
+    });
+  });
+
+router.route('/comment')
+  .post(function(req, res){
+    var comment = new Comment(req.body);
+
+    comment.save(function(err){
+      if(err){
+        return res.send(err);
+      }
+
+      res.send({ message: 'Comment Added', data: comment });
+    });
+  });
+
+router.route('/comment/:id')
+  .get(function(req, res){
+    Comment.find({movie_id: req.params.id}, function(err, comments){
+      if(err) {
+        return res.send(err);
+      }
+
+      res.json(comments);
+
     });
   });
 
