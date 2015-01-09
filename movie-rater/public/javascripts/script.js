@@ -18,6 +18,9 @@ function serverRequest(endpoint, method, json, success){
 }
 
 function refreshHome(data){
+  //Delete Old Images
+  $("#movie-results").empty();
+  totalWidth = 0;
   //Fill with Images
   $.each(data.results, function(i,results){
     if(results.poster_path){
