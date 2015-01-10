@@ -35,11 +35,6 @@ function refreshHome(data){
         .appendTo(
           $("<div/>").attr("class", "gallery__item")
           .appendTo("#movie-results")));
-            $("<div/>").attr("class", "gallery__item__title")
-            .append(results.title)
-            .append("<br><br><br><br><br><br>")
-            .appendTo("#movie-results");
-          console.log(results.title);
       }
     if ( i == 49 ) return false;
   });

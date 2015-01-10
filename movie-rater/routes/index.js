@@ -56,6 +56,12 @@ router.route('/browse')
   	});
 });
 
+//Get movie page
+router.get('/movie/:id', function(req, res) {
+	res.render('movie', { title: 'Movie Rater App - ', id: id });
+});
+
+
 //Get report page
 router.get('/report', function(req, res) {
   res.render('report', { title: 'Movie Rater App - Report' });
