@@ -5,10 +5,10 @@ var http = require('http');
 
 var APIKEY = 'a283f3647d2484cd1b3dad05152d7766';
 
-function movieDB(data, cb){
+function movieDB(data, endpoint, cb){
 
 	var host = 'api.themoviedb.org';
-	var endpoint = '/3/discover/movie';
+	var endpoint = endpoint;
 	endpoint += '?api_key=' + APIKEY;
 	endpoint += '&' + querystring.stringify(data);
 
@@ -51,7 +51,7 @@ router.get('/browse', function(req, res) {
 
 router.route('/browse')
   .post(function(req, res){
-  	movieDB(req.body, function(data){
+  	movieDB(req.body, '/3/search/movie', function(data){
   		return res.json(data);
   	});
 });

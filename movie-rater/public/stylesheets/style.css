@@ -6,20 +6,21 @@ body {
   background-image: url(../images/bg.png);
   background-position: center top;
   background-size: 100% auto;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .movie-gallery {
   background-color: #dddddd;
   min-height: 250px;
   padding: 0px;
+  margin-left: 15px;
+  margin-right: 15px;
   position: relative;
 }
 
 .home-span {
-  margin: 10px auto;
-  width: 250px;
+  text-align: center;
 }
 
 .gallery-wrap {
@@ -74,11 +75,21 @@ body {
 }
 .clearfix { *zoom: 1;}
 
+.imagesearchbar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+#movie-results {
+  text-align: left;
+  margin-left: 10px;
+}
+
 /*css code for custom navbar */
 .navbar-default {
 	background-color: #9b0000;
 	border-color: #6b0000;
-  font-size: 20px;
 }
 .navbar-default .navbar-brand {
 	color: #ecf0f1;
