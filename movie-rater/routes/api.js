@@ -119,6 +119,63 @@ router.route('/comment/:id')
     });
   });
 
+router.route('/rate/:id')
+  .get(function(req,res){
+    Movie.findOne({ _id: req.params.id}, function(err, movie) {
+      if (err) {
+        return res.send(err);
+      }
+      res.json(movie.rating);
+    });
+   });
+
+router.route('/rate')
+  .post(function(req, res){
+    Movie.findOne({_id: req.body.id}, function(err, movie){
+      if(err){
+        return res.send(err);
+      }
+
+
+      if(!req.body.val){
+        return res.json({message: 'No value specified'});
+      }
+      var vote = req.body.val;
+      vote = Math.min(vote, 5);
+      vote = Math.max(vote, 0);
+
+
+      if(movie !== null){
+        movie.rating = ((movie.votes * movie.rating) + vote)/(movie.votes + 1);
+        movie.votes += 1;
+
+        movie.save(function(err){
+          if(err){
+            res.json({ message: err });
+          }
+        res.json({message: 'Voting correct'});
+
+        })
+      }else{
+        var movie = new Movie();
+        movie.title = req.body.title;
+        movie.poster = req.body.poster;
+        movie.rating = vote;
+        movie.votes = 1;
+
+        movie.save(function(err){
+          if(err){
+            res.json({ message: err });
+          }
+
+          res.json({ message: 'Movie added to DB'});
+
+        });
+      }
+
+    });
+  });
+
 // Api home page
 router.get('/', function(req, res) {
     res.render('api', { title: 'Movie Rater App API' });
