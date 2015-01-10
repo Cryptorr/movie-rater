@@ -24,7 +24,7 @@ function refreshHome(data){
   //Fill with Images
   $.each(data.results, function(i,results){
     if(results.poster_path){
-      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w130' + results.poster_path).attr("class", "gallery__img").attr("alt", "")
+      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + results.poster_path).attr("class", "gallery__img").attr("alt", "")
       .one('load',function() {
         //Change gallery width on image load
         totalWidth = totalWidth + $(this).parent().parent().outerWidth(true);
