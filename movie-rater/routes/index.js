@@ -72,11 +72,25 @@ router.route('/browse')
   	});
 });
 
+//Get register page
+router.get('/register', function(req, res) {
+  res.render('register', { title: 'Movie Rater App - Register' });
+});
+
+//Get login page
+router.get('/login', function(req, res) {
+  res.render('login', { title: 'Movie Rater App - Login' });
+});
+
 //Get movie page
 router.get('/movie/:id', function(req, res) {
+<<<<<<< HEAD
 	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
 		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data});
 	});
+=======
+	res.render('movie', { title: 'Movie Rater App - ', id: id });
+>>>>>>> origin/master
 });
 
 

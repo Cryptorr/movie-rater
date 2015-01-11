@@ -26,18 +26,19 @@ function refreshHome(data){
     if(results.poster_path){
       $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + results.poster_path).attr("class", "gallery__img").attr("alt", "")
       .one('load',function() {
+        //Change gallery width on image load
+        totalWidth = totalWidth + $(this).parent().parent().outerWidth(true);
+        $(".gallery").width(totalWidth);
+        maxScrollPosition = totalWidth - $(".gallery-wrap").outerWidth();
       }).appendTo(
         $("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + results.id)
         .appendTo(
           $("<div/>").attr("class", "gallery__item")
           .appendTo("#movie-results")));
-           $("<div/>").attr("class", "gallery__item__title")
-            .append(results.title)
-            .append("<br><br><br><br><br><br>")
-            .appendTo("#movie-results");
       }
     if ( i == 49 ) return false;
   });
+
   //Find first image
   $(".gallery__item:first").addClass("gallery__item--active");
   $(".gallery").css({ "left": "0"});
