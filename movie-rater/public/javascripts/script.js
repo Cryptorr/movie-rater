@@ -108,8 +108,8 @@ $(window).load(function(){
     console.log(d[0].DBid)
     for (i=0; i<d.length; i++) {
       $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
-      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
-      .appendTo("#movie-results-home");
+      .appendTo($("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
+          .appendTo("#movie-results-home"));
     };
   });
 
