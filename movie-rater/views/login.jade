@@ -10,9 +10,9 @@ block content
     a(href="/register") here
     | .
   div.loginbox
-    form(name="login", action="/login", method="post")
+    form(name="login", action="/api/login", method="post")
       p
-        input(type="text", name="user")
+        input(type="text", name="name")
       p
         input(type="password", name="pass")
       p
