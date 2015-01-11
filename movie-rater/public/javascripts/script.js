@@ -118,6 +118,19 @@ $(window).load(function(){
     }
   });
 
+  $('#ratebutton').click(function() {
+    var data = {
+        id  : moviedata.id,
+        title : moviedata.title,
+        poster : moviedata.poster_path,
+        genres : moviedata.genres,
+        val : $('.rating').val()
+    };
+    serverRequest('/api/rate', 'POST', data, function(d){
+      console.log("works");
+    });
+  });
+
   // When the prev button is clicked
   $(".gallery__controls-prev").click(function(){
       // Set target item to the item before the active item

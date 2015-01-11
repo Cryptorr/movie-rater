@@ -3,9 +3,11 @@ extends layout
 block link
   -var moviedata= data;
   -var comments= comments
+  script(type='text/javascript').
+    = 'moviedata = ' + moviedata + ';' + 'comments = ' + comments + ';'
 
 block content
-  div#movieimg
+  div
     img(src='http://image.tmdb.org/t/p/' + 'w396' + moviedata.poster_path)
     b
       p= moviedata.tagline
@@ -29,6 +31,12 @@ block content
     ul
       each val in moviedata.production_companies
         li= val.name
+    h6= moviedata.id
     form
-      input(id='input-21d', value='0', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
+      input(name="score", id='input-21d', value='0', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
+      button#ratebutton(type="button", class="btn btn-success")
+        |Rate!
+  div#comments
+    form(name="register", action="/api/make_account", method="post", onsubmit="return checkPass(this);")
       input(type="text", name="commentfield", id="comment", class="form-control", placeholder="Comment now...")
+    table
