@@ -1,10 +1,6 @@
 extends layout
 
 block link
-<<<<<<< HEAD
-  -var moviedata= data;
-=======
-<<<<<<< HEAD
   -var moviedata= data;
   -var comments= comments
 
@@ -34,36 +30,3 @@ block content
   form
     input(id='input-21d', value='0', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
     input(type="text", name="commentfield", id="comment", class="form-control", placeholder="Comment now...")
-=======
->>>>>>> origin/master
-
-block content
-    img(src='http://image.tmdb.org/t/p/' + 'w396' + moviedata.poster_path)
-  p
-  b Title:
-  p= moviedata.title
-  b Overview:
-  p= moviedata.overview
-  b Genres:
-  ul
-    each val in moviedata.genres
-      li= val.name
-  b Release Date:
-  p= moviedata.release_date
-  b Tagline:
-  p= moviedata.tagline
-  b Runtine:
-  p= moviedata.runtime
-  b Budget:
-  p= '$' + moviedata.budget
-  b Production companies:
-  ul
-    each val in moviedata.production_companies
-      li= val.name
-  form
-<<<<<<< HEAD
-    input(id='input-21d', value='0', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
-=======
-    input(id='input-21d', value='2', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
->>>>>>> origin/master
->>>>>>> origin/master
