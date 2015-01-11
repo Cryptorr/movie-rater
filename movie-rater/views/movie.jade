@@ -2,9 +2,15 @@ extends layout
 
 block link
   -var moviedata= data;
-  -var comments= comments
+  -var comments= comments;
+  -var genres= [];
+  -for(var i = 0; i<moviedata.genres.length; i++){
+  -  genres.push(JSON.stringify(moviedata.genres[i]));
+  -}
   script(type='text/javascript').
-    var moviedata = !{JSON.stringify(moviedata)}
+    var moviedata = !{JSON.stringify(moviedata)};
+    var moviegenres = JSON.stringify([!{genres}]);
+    console.log(moviegenres);
 
 block content
   div#movieimg

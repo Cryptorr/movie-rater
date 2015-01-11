@@ -128,9 +128,10 @@ $(window).load(function(){
         id  : moviedata.id,
         title : moviedata.title,
         poster : moviedata.poster_path,
-        genres : moviedata.genres,
+        genres : moviegenres,
         val : $('.rating').val()
     };
+    //console.log(data);
     serverRequest('/api/rate', 'POST', data, function(d){
       console.log("works");
     });

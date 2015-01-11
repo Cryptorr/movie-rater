@@ -207,7 +207,7 @@ router.route('/rate')
         movie.DBid = req.body.id;
         movie.title = req.body.title;
         movie.poster = req.body.poster;
-        movie.genres = req.body.genres;
+        movie.genres = JSON.parse(req.body.genres);
         movie.rating = vote;
         movie.votes = 1;
 
