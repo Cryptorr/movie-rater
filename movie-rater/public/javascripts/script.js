@@ -62,30 +62,30 @@ function toGalleryItem(targetItem){
 
 //check if username is valid and passwords are valid/equal
 function checkPass(form) {
-  if(form.username.value == "") {
+  if(form.name.value == "") {
     alert("Username cannot be blank!");
-    form.username.focus();
+    form.name.focus();
     return false;
   }
   re = /^\w+$/;
-  if(!re.test(form.username.value)) {
+  if(!re.test(form.name.value)) {
     alert("Username may only contain letters, numbers and underscores!");
-    form.username.focus();
+    form.name.focus();
     return false;
   }
-  if(form.pwd1.value == "" || form.pwd2.value == "") {
+  if(form.pass.value == "" || form.pwd2.value == "") {
     alert("Please fill in both password fields");
-    form.pwd1.focus();
+    form.pass.focus();
     return false;
   }
-  if(form.pwd1.value != form.pwd2.value) {
+  if(form.pass.value != form.pwd2.value) {
     alert("Error: Passwords were not equal, so no account could be created");
-    form.pwd1.focus();
+    form.pass.focus();
     return false;
   }
-  if(!re.test(form.pwd1.value)) {
+  if(!re.test(form.pass.value)) {
     alert("Password may only contain letters, numbers and underscores!");
-    form.pwd1.focus();
+    form.pass.focus();
     return false;
   }
 };
@@ -102,6 +102,11 @@ $(window).load(function(){
       refreshHome(d);
     });
   }
+
+  //Display most popular movies on homepage
+  serverRequest('/api/toprated', 'GET', data, function(d) {
+    console.log(d.results[0].title)
+  });
 
   // Search movieDB for related pictures
   $('#imagesearch').bind('input propertychange', function() {
