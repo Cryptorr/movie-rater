@@ -43,6 +43,28 @@ router.route('/make_account')
     });
   });
 
+router.route('/login')
+  .post(function(req, res){
+    Account.findOne({name: req.body.name},function(err, account){
+
+      if(err){
+        return res.send(err);
+      }
+
+      if(account === null){
+        res.json({message: "Username does not exist"});
+      }else{
+        if(req.body.pass === account.pass){
+          req.session.user = account.ID;
+          res.json({message: 'Logged in!'});
+        }else{
+          res.json({message: 'Incorrect password'});
+        }
+      }
+    });
+  });
+
+
 // Restricted api:
 router.route('/movies')
   //Create new movie
