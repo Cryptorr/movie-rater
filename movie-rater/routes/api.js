@@ -208,7 +208,7 @@ router.route('/rate/:id')
       if (err) {
         return res.send(err);
       }
-      res.json(movie.rating);
+      res.json({rating : movie.rating});
     });
    });
 
