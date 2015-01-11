@@ -84,22 +84,9 @@ router.get('/login', function(req, res) {
 
 //Get movie page
 router.get('/movie/:id', function(req, res) {
-<<<<<<< HEAD
-	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
-		console.log(data);
-		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data,  });
-	});
-=======
-<<<<<<< HEAD
 	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
 		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data});
 	});
-=======
-	res.render('movie', { title: 'Movie Rater App - ', id: id });
->>>>>>> origin/master
->>>>>>> origin/master
-});
-
 
 //Get report page
 router.get('/report', function(req, res) {
