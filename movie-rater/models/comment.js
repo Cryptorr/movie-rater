@@ -4,7 +4,7 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var CommentSchema = new Schema({
-  poster: String,
+  user: String,
   content: String,
   movie_id: String
   });

@@ -108,8 +108,8 @@ $(window).load(function(){
     console.log(d[0].DBid)
     for (i=0; i<d.length; i++) {
       $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
-      .appendTo($("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
-          .appendTo("#movie-results-home"));
+      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
+      .appendTo("#movie-results-home");
     };
   });
 
@@ -130,13 +130,13 @@ $(window).load(function(){
 
   $('#ratebutton').click(function() {
     var data = {
-        movie_id  : moviedata.id,
+        id  : moviedata.id,
         title : moviedata.title,
         poster : moviedata.poster_path,
         genres : moviegenres,
         val : $('.rating').val()
     };
-    //console.log(data);
+    console.log(data);
     serverRequest('/api/rate', 'POST', data, function(d){
       alert("Thanks for rating a movie!");
     });
@@ -149,9 +149,9 @@ $(window).load(function(){
         poster : moviedata.poster_path,
         genres : moviegenres,
         content : $('#comment').val(),
-        poster : "Henk"
+        user : "Henk"
     };
-    //console.log(data);
+    console.log(data);
     serverRequest('/api/comment', 'POST', data, function(d){
       alert("Thanks for commenting on a movie!");
       console.log("ok");
