@@ -157,6 +157,7 @@ router.route('/comment')
 
         });
       }
+      console.log(req.session);
       Account.findOne({_id: req.session.user}, function(err, account){
         if(err){
           return res.send(err);
@@ -167,7 +168,7 @@ router.route('/comment')
         }
         var comment = new Comment();
         comment.movie_id = req.body.id;
-        comment.poster = name;
+        comment.user = name;
         comment.content = req.body.content;
 
         comment.save(function(err){
