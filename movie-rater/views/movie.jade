@@ -7,7 +7,7 @@ block link
     var moviedata = !{JSON.stringify(moviedata)}
 
 block content
-  div
+  div#movieimg
     img(src='http://image.tmdb.org/t/p/' + 'w396' + moviedata.poster_path)
     b
       p= moviedata.tagline
