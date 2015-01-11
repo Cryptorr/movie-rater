@@ -145,7 +145,7 @@ router.route('/comment/:id')
 
 router.route('/rate/:id')
   .get(function(req,res){
-    Movie.findOne({ _id: req.params.id}, function(err, movie) {
+    Movie.findOne({ DBid: req.params.id}, function(err, movie) {
       if (err) {
         return res.send(err);
       }
@@ -155,7 +155,7 @@ router.route('/rate/:id')
 
 router.route('/rate')
   .post(function(req, res){
-    Movie.findOne({_id: req.body.id}, function(err, movie){
+    Movie.findOne({DBid: req.body.id}, function(err, movie){
       if(err){
         return res.send(err);
       }
@@ -182,6 +182,7 @@ router.route('/rate')
         })
       }else{
         var movie = new Movie();
+        movie.DBid = req.body.id;
         movie.title = req.body.title;
         movie.poster = req.body.poster;
         movie.rating = vote;
