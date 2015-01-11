@@ -61,7 +61,7 @@ router.route('/login')
         res.json({message: "Username does not exist"});
       }else{
         if(req.body.pass === account.pass){
-          req.session.user = account.ID;
+          req.session.user = account._id;
           res.json({message: 'Logged in!'});
         }else{
           res.json({message: 'Incorrect password'});
@@ -144,7 +144,6 @@ router.route('/comment')
       if(err){
         return res.send(err);
       }
-
       if(movie == null){
         var movie = new Movie();
         movie.DBid = req.body.id;
@@ -170,7 +169,8 @@ router.route('/comment')
         }
         var name = "Anon"
         if(account){
-          name = account.name
+          name = account.name;
+          console.log(account.name);
         }
         var comment = new Comment();
         comment.movie_id = req.body.id;

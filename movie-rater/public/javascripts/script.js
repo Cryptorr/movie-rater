@@ -136,7 +136,7 @@ $(window).load(function(){
         genres : moviegenres,
         val : $('.rating').val()
     };
-    console.log(data);
+    //console.log(data);
     serverRequest('/api/rate', 'POST', data, function(d){
       alert("Thanks for rating a movie!");
     });
@@ -151,17 +151,16 @@ $(window).load(function(){
         content : $('#comment').val(),
         user : "Henk"
     };
-    console.log(data);
+    //console.log(data);
     serverRequest('/api/comment', 'POST', data, function(d){
       alert("Thanks for commenting on a movie!");
-      console.log("ok");
     });
   });
 
   if($('#commenttable').length){
     serverRequest('/api/comment/' + moviedata.id, 'GET', "", function(d){
       for(var i = 0; i<d.length; i++){
-        $('#commenttable').append("<tr><td>" + d[i].poster + "</td><td>" + d[i].content + "</td></tr>");
+        $('#commenttable').append("<tr><td>" + d[i].user + "</td><td>" + d[i].content + "</td></tr>");
       }
     });
   }
