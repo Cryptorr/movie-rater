@@ -233,12 +233,12 @@ router.route('/toprated')
 
       movies.sort(function(a,b){
         if(a.rating === undefined){
-          return -1;
-        }
-        if(b.rating === undefined){
           return 1;
         }
-        return a.rating - b.rating;
+        if(b.rating === undefined){
+          return -1;
+        }
+        return b.rating - a.rating;
       });
 
       return res.json(movies.slice(0, 10));
