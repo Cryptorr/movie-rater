@@ -43,23 +43,6 @@ function refreshHome(data){
   $(".gallery").css({ "left": "0"});
 };
 
-function toGalleryItem(targetItem){
-    if(targetItem.length){
-        var newPosition = targetItem.position().left;
-        if(newPosition <= maxScrollPosition){
-            targetItem.addClass("gallery__item--active");
-            targetItem.siblings().removeClass("gallery__item--active");
-            $(".gallery").animate({
-                left : - newPosition
-            });
-        } else {
-            $(".gallery").animate({
-                left : - maxScrollPosition
-            });
-        };
-    };
-};
-
 //check if username is valid and passwords are valid/equal
 function checkPass(form) {
   if(form.name.value == "") {
@@ -105,11 +88,15 @@ $(window).load(function(){
 
   //Display most popular movies on homepage
   serverRequest('/api/toprated', 'GET', data, function(d) {
-    console.log(d[0].DBid)
+    console.log(d[0].DBid);
     for (i=0; i<d.length; i++) {
-      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
-      .appendTo($("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
-          .appendTo("#movie-results-home"));
+      $(".popularMovies").append(
+        $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
+          $("<a/>").attr("href", '/movie/' + d[i].DBid).append(
+            $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w185' + d[i].poster)
+          )
+        )
+      );
     };
   });
 
@@ -165,18 +152,24 @@ $(window).load(function(){
       }
     });
   }
+});
 
-  // When the prev button is clicked
-  $(".gallery__controls-prev").click(function(){
-      // Set target item to the item before the active item
-      var targetItem = $(".gallery__item--active").prev();
-      toGalleryItem(targetItem);
-  });
-
-  // When the next button is clicked
-  $(".gallery__controls-next").click(function(){
-      // Set target item to the item after the active item
-      var targetItem = $(".gallery__item--active").next();
-      toGalleryItem(targetItem);
+/* needs further work
+window.addEventListener("resize", function() {
+  console.log("Does it fire?");
+  //Refresh most popular movies on homepage
+  serverRequest('/api/toprated', 'GET', data, function(d) {
+    console.log(d[0].DBid)
+    $(".popularMovies").empty();
+    for (i=0; i<d.length; i++) {
+      $(".popularMovies").append(
+        $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
+          $("<a/>").attr("href", '/movie/' + d[i].DBid).append(
+            $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w185' + d[i].poster)
+          )
+        )
+      );
+    };
   });
 });
+*/
