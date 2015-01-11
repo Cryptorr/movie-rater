@@ -60,6 +60,36 @@ function toGalleryItem(targetItem){
     };
 };
 
+//check if username is valid and passwords are valid/equal
+function checkPass(form) {
+  if(form.username.value == "") {
+    alert("Username cannot be blank!");
+    form.username.focus();
+    return false;
+  }
+  re = /^\w+$/;
+  if(!re.test(form.username.value)) {
+    alert("Username may only contain letters, numbers and underscores!");
+    form.username.focus();
+    return false;
+  }
+  if(form.pwd1.value == "" || form.pwd2.value == "") {
+    alert("Please fill in both password fields");
+    form.pwd1.focus();
+    return false;
+  }
+  if(form.pwd1.value != form.pwd2.value) {
+    alert("Error: Passwords were not equal, so no account could be created");
+    form.pwd1.focus();
+    return false;
+  }
+  if(!re.test(form.pwd1.value)) {
+    alert("Password may only contain letters, numbers and underscores!");
+    form.pwd1.focus();
+    return false;
+  }
+};
+
 $(window).load(function(){
    //Check url hash
   if(document.location.hash.length > 0){

@@ -5,7 +5,10 @@ block link
 
 block content
   h1 Login page
-  p fill in your username and password to login. if you do not have an account yet, you can register.
+  p
+    | Fill in your username and password to login. If you do not have an account yet, you can register&nbsp;
+    a(href="/register") here
+    | .
   div.loginbox
     form(name="login", action="/login", method="post")
       p
