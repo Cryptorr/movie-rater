@@ -4,7 +4,7 @@ block link
   -var moviedata= data;
   -var comments= comments
   script(type='text/javascript').
-    = 'moviedata = ' + moviedata + ';' + 'comments = ' + comments + ';'
+    var moviedata = !{JSON.stringify(moviedata)}
 
 block content
   div
