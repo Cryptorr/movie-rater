@@ -24,13 +24,19 @@ var Account = require('../models/account');
 router.route('/make_account')
   //create account wanted
   .post(function(req, res) {
-    var account = new Account(req.body);
+    Account.findOne({name: req.body.name}, function(err, account){
+      if(account === null){
+        var account = new Account(req.body);
 
-    account.save(function(err) {
-    if (err)
-      return res.send(err);
+        account.save(function(err) {
+        if (err)
+          return res.send(err);
 
-    res.send({ message: 'Account made!', data: account });
+        res.send({ message: 'Account made!', data: account });
+      });
+      }else{
+        res.json({mssage: "Account already exists!"});
+      }
     });
   })
   //Get all movies from db
