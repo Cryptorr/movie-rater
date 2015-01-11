@@ -7,7 +7,7 @@ var AccountSchema   = new Schema({
   ID: String,
   name: String,
   pass: String,
-  ratings: [{movie_id:rate}]
+  ratings: [{movie_id:Number}]
   });
 
 module.exports = mongoose.model('Account', AccountSchema);

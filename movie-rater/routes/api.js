@@ -18,7 +18,7 @@ mongoose.connect(uristring, function (err, res) {
 //Get models
 var Movie = require('../models/movie');
 var Comment = require('../models/comment');
-var Account = require('../models/account'); 
+var Account = require('../models/account');
 
 // Save Account into Mongoose
 router.route('/make_account')
@@ -196,6 +196,50 @@ router.route('/rate')
 
         });
       }
+
+    });
+  });
+
+router.route('/toprated')
+  .get(function(req, res){
+    Movie.find({}, function(err, movies){
+      if(err){
+        return res.send(err);
+      }
+
+      movies.sort(function(a,b){
+        if(a.rating === undefined){
+          return -1;
+        }
+        if(b.rating === undefined){
+          return 1;
+        }
+        return a.rating - b.rating;
+      });
+
+      return res.json(movies.slice(10).reverse());
+
+    });
+  });
+
+router.route('/toprated/:genre')
+  .get(function(req, res){
+    Movie.find({genres: req.params.genre}, function(err, movies){
+      if(err){
+        return res.send(err);
+      }
+
+      movies.sort(function(a,b){
+        if(a.rating === undefined){
+          return -1;
+        }
+        if(b.rating === undefined){
+          return 1;
+        }
+        return a.rating - b.rating;
+      });
+
+      return res.json(movies.slice(10));
 
     });
   });
