@@ -130,13 +130,13 @@ $(window).load(function(){
 
   $('#ratebutton').click(function() {
     var data = {
-        movie_id  : moviedata.id,
+        id  : moviedata.id,
         title : moviedata.title,
         poster : moviedata.poster_path,
         genres : moviegenres,
         val : $('.rating').val()
     };
-    //console.log(data);
+    console.log(data);
     serverRequest('/api/rate', 'POST', data, function(d){
       alert("Thanks for rating a movie!");
     });
@@ -151,7 +151,7 @@ $(window).load(function(){
         content : $('#comment').val(),
         user : "Henk"
     };
-    //console.log(data);
+    console.log(data);
     serverRequest('/api/comment', 'POST', data, function(d){
       alert("Thanks for commenting on a movie!");
       console.log("ok");
