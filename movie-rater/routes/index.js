@@ -58,7 +58,10 @@ router.route('/browse')
 
 //Get movie page
 router.get('/movie/:id', function(req, res) {
-	res.render('movie', { title: 'Movie Rater App - ', id: id });
+	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
+		console.log(data);
+		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data,  });
+	});
 });
 
 

@@ -38,7 +38,6 @@ function refreshHome(data){
       }
     if ( i == 49 ) return false;
   });
-
   //Find first image
   $(".gallery__item:first").addClass("gallery__item--active");
   $(".gallery").css({ "left": "0"});
