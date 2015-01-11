@@ -87,6 +87,7 @@ router.get('/movie/:id', function(req, res) {
 	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
 		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data});
 	});
+});
 
 //Get report page
 router.get('/report', function(req, res) {
