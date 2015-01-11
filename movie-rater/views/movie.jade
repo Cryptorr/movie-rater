@@ -2,7 +2,6 @@ extends layout
 
 block link
   -var moviedata= data;
-  -var comments= comments;
   -var genres= [];
   -for(var i = 0; i<moviedata.genres.length; i++){
   -  genres.push(JSON.stringify(moviedata.genres[i]));
@@ -10,7 +9,6 @@ block link
   script(type='text/javascript').
     var moviedata = !{JSON.stringify(moviedata)};
     var moviegenres = JSON.stringify([!{genres}]);
-    console.log(moviegenres);
 
 block content
   div#movieimg
@@ -49,4 +47,4 @@ block content
   div#comments
     form(name="register", action="/api/make_account", method="post", onsubmit="return checkPass(this);")
       input(type="text", name="commentfield", id="comment", class="form-control", placeholder="Comment now...")
-    table
+    table#commenttable(class="table")

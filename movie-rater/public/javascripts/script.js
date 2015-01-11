@@ -133,9 +133,17 @@ $(window).load(function(){
     };
     //console.log(data);
     serverRequest('/api/rate', 'POST', data, function(d){
-      console.log("works");
+      alert("Thanks for rating a movie!");
     });
   });
+
+  if($('#commenttable').length){
+    serverRequest('/api/comment/' + moviedata.id, 'GET', "", function(d){
+      for(var i = 0; i<d.length; i++){
+        $('#commenttable').after("<tr><td>" + d[i].poster + "</td><td>" + d[i].content + "</td></tr>");
+      }
+    });
+  }
 
   // When the prev button is clicked
   $(".gallery__controls-prev").click(function(){

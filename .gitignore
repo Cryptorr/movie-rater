@@ -93,3 +93,4 @@ movie-rater/node_modules/express-session/session/cookie.js
 movie-rater/node_modules/express-session/session/memory.js
 movie-rater/node_modules/express-session/session/session.js
 movie-rater/node_modules/express-session/session/store.js
+movie-rater/package.json
