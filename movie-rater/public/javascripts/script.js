@@ -105,7 +105,12 @@ $(window).load(function(){
 
   //Display most popular movies on homepage
   serverRequest('/api/toprated', 'GET', data, function(d) {
-    console.log(d.results[0].title)
+    console.log(d[0].DBid)
+    for (i=0; i<d.length; i++) {
+      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
+      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
+      .appendTo("#movie-results-home");
+    };
   });
 
   // Search movieDB for related pictures

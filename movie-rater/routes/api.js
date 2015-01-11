@@ -241,7 +241,7 @@ router.route('/toprated')
         return a.rating - b.rating;
       });
 
-      return res.json(movies.slice(0, 10));
+      return res.json(movies.slice(0, 10).reverse());
 
     });
   });
