@@ -4,10 +4,10 @@ block link
   -var moviedata= data;
   -var comments= comments
   script(type='text/javascript').
-    = 'moviedata = ' + moviedata + ';' + 'comments = ' + comments + ';'
+    var moviedata = !{JSON.stringify(moviedata)}
 
 block content
-  div
+  div#movieimg
     img(src='http://image.tmdb.org/t/p/' + 'w396' + moviedata.poster_path)
     b
       p= moviedata.tagline

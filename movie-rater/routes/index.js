@@ -4,21 +4,6 @@ var router = express.Router();
 var querystring = require('querystring');
 var https = require('https');
 
-var mongoose = require('mongoose');
-//Setup db
-var uristring = 'mongodb://admin:V04L1jx6yl2nXIKreaKg@ds029541.mongolab.com:29541/movierater'; //DB url
-//Connect to db
-mongoose.connect(uristring, function (err, res) {
-	if (err) {
-	console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-	} else {
-	console.log ('Succeeded connected to: ' + uristring);
-	}
-});
-//Get models
-var Movie = require('../models/movie');
-var Comment = require('../models/comment');
-
 var APIKEY = 'a283f3647d2484cd1b3dad05152d7766';
 
 function movieDB(data, endpoint, cb){
