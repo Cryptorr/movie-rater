@@ -7,6 +7,7 @@ var MovieSchema   = new Schema({
   DBid: String,
 	title: String,
   poster: String,
+  genres: [String],
   rating: Number,
   votes: Number
   });
