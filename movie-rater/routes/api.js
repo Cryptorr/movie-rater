@@ -157,20 +157,27 @@ router.route('/comment')
 
         });
       }
-
-      var comment = new Comment();
-      comment.movie_id = req.body.id;
-      comment.poster = req.body.poster;
-      comment.content = req.body.content;
-
-      comment.save(function(err){
+      Account.findOne({_id: req.session.user}, function(err, account){
         if(err){
           return res.send(err);
         }
+        var name = "Anon"
+        if(account){
+          name = account.name
+        }
+        var comment = new Comment();
+        comment.movie_id = req.body.id;
+        comment.poster = name;
+        comment.content = req.body.content;
 
-        res.json({ message: 'Comment Added', data: comment });
+        comment.save(function(err){
+          if(err){
+            return res.send(err);
+          }
+
+          res.json({ message: 'Comment Added', data: comment });
+        });
       });
-
     });
   })
   .get(function(req, res) {
