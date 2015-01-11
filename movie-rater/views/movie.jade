@@ -17,23 +17,6 @@ block content
       p= moviedata.title
     b Overview:
     p= moviedata.overview
-<<<<<<< HEAD
-    b Genres:
-    ul
-      each val in moviedata.genres
-        li= val.name
-    b Release Date:
-    p= moviedata.release_date
-    b Runtime:
-    p= moviedata.runtime
-    b Budget:
-    p= '$' + moviedata.budget
-    b Production companies:
-    ul
-      each val in moviedata.production_companies
-        li= val.name
-    h6= moviedata.id
-=======
     if (moviedata.genres != "")
       b Genres:
       ul
@@ -53,7 +36,6 @@ block content
       ul
         each val in moviedata.production_companies
           li= val.name
->>>>>>> origin/master
     form
       input(name="score", id='input-21d', value='0', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
       button#ratebutton(type="button", class="btn btn-success")
