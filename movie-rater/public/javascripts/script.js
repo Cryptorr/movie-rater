@@ -108,8 +108,8 @@ $(window).load(function(){
     console.log(d[0].DBid)
     for (i=0; i<d.length; i++) {
       $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
-      .appendTo($("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
-          .appendTo("#movie-results-home"));
+      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
+      .appendTo("#movie-results-home");
     };
   });
 
@@ -149,7 +149,7 @@ $(window).load(function(){
         poster : moviedata.poster_path,
         genres : moviegenres,
         content : $('#comment').val(),
-        poster : "Henk"
+        user : "Henk"
     };
     //console.log(data);
     serverRequest('/api/comment', 'POST', data, function(d){
