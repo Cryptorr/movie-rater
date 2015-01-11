@@ -10,11 +10,6 @@ body {
   margin-right: 10%;
 }
 
-p.frsegment {
-  font-size:16px;
-  font-family: arial, Georgia, Serif;
-}
-
 .movie-gallery {
   background-color: #dddddd;
   min-height: 250px;

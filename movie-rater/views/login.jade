@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Login page
+  p fill in your username and password to login. if you do not have an account yet, you can register.
+  div.loginbox
+    form(name="login", action="/login", method="post")
+      p
+        input(type="text", name="user")
+      p
+        input(type="password", name="pass")
+      p
+        input(type="submit", value="login")

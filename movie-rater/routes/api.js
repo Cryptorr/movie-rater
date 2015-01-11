@@ -18,6 +18,30 @@ mongoose.connect(uristring, function (err, res) {
 //Get models
 var Movie = require('../models/movie');
 var Comment = require('../models/comment');
+var Account = require('../models/account'); 
+
+// Save Account into Mongoose
+router.route('/make_account')
+  //create account wanted
+  .post(function(req, res) {
+    var account = new Account(req.body);
+
+    account.save(function(err) {
+    if (err)
+      return res.send(err);
+
+    res.send({ message: 'Account made!', data: account });
+    });
+  })
+  //Get all movies from db
+  .get(function(req, res) {
+    Account.find(function(err, accounts) {
+      if (err)
+        return res.send(err);
+
+      res.json(accounts);
+    });
+  });
 
 // Restricted api:
 router.route('/movies')
