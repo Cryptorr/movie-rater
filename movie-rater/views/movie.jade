@@ -2,6 +2,7 @@ extends layout
 
 block link
   -var moviedata= data;
+  -var comments= comments
 
 block content
   img(src='http://image.tmdb.org/t/p/' + 'w396' + moviedata.poster_path)
@@ -18,7 +19,7 @@ block content
   p= moviedata.release_date
   b Tagline:
   p= moviedata.tagline
-  b Runtine:
+  b Runtime:
   p= moviedata.runtime
   b Budget:
   p= '$' + moviedata.budget
@@ -28,3 +29,4 @@ block content
       li= val.name
   form
     input(id='input-21d', value='0', type='number', class='rating', min=0, max=5, step=0.5, data-size='sm')
+    input(type="text", name="commentfield", id="comment", class="form-control", placeholder="Comment now...")
