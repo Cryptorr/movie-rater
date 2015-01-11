@@ -105,7 +105,12 @@ $(window).load(function(){
 
   //Display most popular movies on homepage
   serverRequest('/api/toprated', 'GET', data, function(d) {
-    console.log(d.results[0].title)
+    console.log(d[0].DBid)
+    for (i=0; i<d.length; i++) {
+      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
+      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
+      .appendTo("#movie-results-home");
+    };
   });
 
   // Search movieDB for related pictures
@@ -125,7 +130,7 @@ $(window).load(function(){
 
   $('#ratebutton').click(function() {
     var data = {
-        id  : moviedata.id,
+        movie_id  : moviedata.id,
         title : moviedata.title,
         poster : moviedata.poster_path,
         genres : moviegenres,
@@ -137,10 +142,26 @@ $(window).load(function(){
     });
   });
 
+  $('#sendcomment').click(function() {
+    var data = {
+        id  : moviedata.id,
+        title : moviedata.title,
+        poster : moviedata.poster_path,
+        genres : moviegenres,
+        content : $('#comment').val(),
+        poster : "Henk"
+    };
+    //console.log(data);
+    serverRequest('/api/comment', 'POST', data, function(d){
+      alert("Thanks for commenting on a movie!");
+      console.log("ok");
+    });
+  });
+
   if($('#commenttable').length){
     serverRequest('/api/comment/' + moviedata.id, 'GET', "", function(d){
       for(var i = 0; i<d.length; i++){
-        $('#commenttable').after("<tr><td>" + d[i].poster + "</td><td>" + d[i].content + "</td></tr>");
+        $('#commenttable').append("<tr><td>" + d[i].poster + "</td><td>" + d[i].content + "</td></tr>");
       }
     });
   }

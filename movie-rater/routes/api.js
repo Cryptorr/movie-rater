@@ -134,14 +134,43 @@ router.route('/movies/:id')
 
 router.route('/comment')
   .post(function(req, res){
-    var comment = new Comment(req.body);
-
-    comment.save(function(err){
+    Movie.findOne({DBid: req.body.id}, function(err, movie){
       if(err){
         return res.send(err);
       }
 
-      res.send({ message: 'Comment Added', data: comment });
+      if(movie == null){
+        var movie = new Movie();
+        movie.DBid = req.body.id;
+        movie.title = req.body.title;
+        movie.poster = req.body.poster;
+        movie.genres = JSON.parse(req.body.genres);
+        movie.rating = 0;
+        movie.votes = 0;
+
+        movie.save(function(err){
+          if(err){
+            res.json({ message: err });
+          }
+
+          //res.json({ message: 'Movie added to DB'});
+
+        });
+      }
+
+      var comment = new Comment();
+      comment.movie_id = req.body.id;
+      comment.poster = req.body.poster;
+      comment.content = req.body.content;
+
+      comment.save(function(err){
+        if(err){
+          return res.send(err);
+        }
+
+        res.json({ message: 'Comment Added', data: comment });
+      });
+
     });
   })
   .get(function(req, res) {
@@ -241,7 +270,7 @@ router.route('/toprated')
         return b.rating - a.rating;
       });
 
-      return res.json(movies.slice(0, 10));
+      return res.json(movies.slice(0, 10).reverse());
 
     });
   });
