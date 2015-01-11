@@ -1,7 +1,23 @@
 var express = require('express');
 var router = express.Router();
+
 var querystring = require('querystring');
-var http = require('http');
+var https = require('https');
+
+var mongoose = require('mongoose');
+//Setup db
+var uristring = 'mongodb://admin:V04L1jx6yl2nXIKreaKg@ds029541.mongolab.com:29541/movierater'; //DB url
+//Connect to db
+mongoose.connect(uristring, function (err, res) {
+	if (err) {
+	console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+	} else {
+	console.log ('Succeeded connected to: ' + uristring);
+	}
+});
+//Get models
+var Movie = require('../models/movie');
+var Comment = require('../models/comment');
 
 var APIKEY = 'a283f3647d2484cd1b3dad05152d7766';
 
@@ -18,7 +34,7 @@ function movieDB(data, endpoint, cb){
 		method: 'get'
 	};
 
-	var req = http.get(options, function(res) {
+	var req = https.get(options, function(res) {
 		res.setEncoding('utf-8');
 
 		var responseString = '';
@@ -68,10 +84,20 @@ router.get('/login', function(req, res) {
 
 //Get movie page
 router.get('/movie/:id', function(req, res) {
+<<<<<<< HEAD
 	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
 		console.log(data);
 		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data,  });
 	});
+=======
+<<<<<<< HEAD
+	movieDB(req.body, '/3/movie/' + req.params.id, function(data){
+		res.render('movie', { title: 'Movie Rater App - ' + data.title, data: data});
+	});
+=======
+	res.render('movie', { title: 'Movie Rater App - ', id: id });
+>>>>>>> origin/master
+>>>>>>> origin/master
 });
 
 
