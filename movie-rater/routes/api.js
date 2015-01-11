@@ -24,13 +24,19 @@ var Account = require('../models/account');
 router.route('/make_account')
   //create account wanted
   .post(function(req, res) {
-    var account = new Account(req.body);
+    Account.findOne({name: req.body.name}, function(err, account){
+      if(account === null){
+        var account = new Account(req.body);
 
-    account.save(function(err) {
-    if (err)
-      return res.send(err);
+        account.save(function(err) {
+        if (err)
+          return res.send(err);
 
-    res.send({ message: 'Account made!', data: account });
+        res.send({ message: 'Account made!', data: account });
+      });
+      }else{
+        res.json({mssage: "Account already exists!"});
+      }
     });
   })
   //Get all movies from db
@@ -55,7 +61,7 @@ router.route('/login')
         res.json({message: "Username does not exist"});
       }else{
         if(req.body.pass === account.pass){
-          req.session.user = account.ID;
+          req.session.user = account._id;
           res.json({message: 'Logged in!'});
         }else{
           res.json({message: 'Incorrect password'});
@@ -138,7 +144,6 @@ router.route('/comment')
       if(err){
         return res.send(err);
       }
-
       if(movie == null){
         var movie = new Movie();
         movie.DBid = req.body.id;
@@ -157,17 +162,19 @@ router.route('/comment')
 
         });
       }
+      console.log(req.session);
       Account.findOne({_id: req.session.user}, function(err, account){
         if(err){
           return res.send(err);
         }
         var name = "Anon"
         if(account){
-          name = account.name
+          name = account.name;
+          console.log(account.name);
         }
         var comment = new Comment();
         comment.movie_id = req.body.id;
-        comment.poster = name;
+        comment.user = name;
         comment.content = req.body.content;
 
         comment.save(function(err){
@@ -207,7 +214,7 @@ router.route('/rate/:id')
       if (err) {
         return res.send(err);
       }
-      res.json(movie.rating);
+      res.json({rating : movie.rating});
     });
    });
 

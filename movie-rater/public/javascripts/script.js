@@ -90,6 +90,7 @@ $(window).load(function(){
   serverRequest('/api/toprated', 'GET', data, function(d) {
     console.log(d[0].DBid);
     for (i=0; i<d.length; i++) {
+<<<<<<< HEAD
       $(".popularMovies").append(
         $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
           $("<a/>").attr("href", '/movie/' + d[i].DBid).append(
@@ -97,6 +98,11 @@ $(window).load(function(){
           )
         )
       );
+=======
+      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
+      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
+      .appendTo("#movie-results-home");
+>>>>>>> origin/master
     };
   });
 
@@ -117,7 +123,7 @@ $(window).load(function(){
 
   $('#ratebutton').click(function() {
     var data = {
-        movie_id  : moviedata.id,
+        id  : moviedata.id,
         title : moviedata.title,
         poster : moviedata.poster_path,
         genres : moviegenres,
@@ -136,19 +142,18 @@ $(window).load(function(){
         poster : moviedata.poster_path,
         genres : moviegenres,
         content : $('#comment').val(),
-        poster : "Henk"
+        user : "Henk"
     };
     //console.log(data);
     serverRequest('/api/comment', 'POST', data, function(d){
       alert("Thanks for commenting on a movie!");
-      console.log("ok");
     });
   });
 
   if($('#commenttable').length){
     serverRequest('/api/comment/' + moviedata.id, 'GET', "", function(d){
       for(var i = 0; i<d.length; i++){
-        $('#commenttable').append("<tr><td>" + d[i].poster + "</td><td>" + d[i].content + "</td></tr>");
+        $('#commenttable').append("<tr><td>" + d[i].user + "</td><td>" + d[i].content + "</td></tr>");
       }
     });
   }
