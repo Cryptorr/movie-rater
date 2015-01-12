@@ -86,8 +86,23 @@ $(window).load(function(){
     });
   }
 
+  $('#loginform').submit(function(){
+    var data={
+      name: $('#loginname').val(),
+      pass: $('#loginpass').val()
+    }
+    serverRequest('/api/login', 'POST', data, function(d){
+      $('#loginmessage').html("<li>" + d.message + "</li>");
+      if(d.message == "Logged in!"){
+        location.reload();
+      }
+    });
+    return false;
+  });
+
   //Display most popular movies on homepage
   serverRequest('/api/toprated', 'GET', data, function(d) {
+    console.log(d[0].DBid);
     for (i=0; i<d.length; i++) {
       $(".popularMovies").append(
         $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
@@ -152,16 +167,14 @@ $(window).load(function(){
   }
 });
 
+/* needs further work
 window.addEventListener("resize", function() {
   console.log("Does it fire?");
   //Refresh most popular movies on homepage
   serverRequest('/api/toprated', 'GET', data, function(d) {
+    console.log(d[0].DBid)
     $(".popularMovies").empty();
     for (i=0; i<d.length; i++) {
-      //first delete all image divs
-      var el = document.getElementById( "popMovieImg" + i );
-      el.parentNode.removeChild( el );
-      //then add them again
       $(".popularMovies").append(
         $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
           $("<a/>").attr("href", '/movie/' + d[i].DBid).append(
@@ -172,3 +185,4 @@ window.addEventListener("resize", function() {
     };
   });
 });
+*/

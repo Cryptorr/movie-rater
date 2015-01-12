@@ -52,7 +52,7 @@ router.route('/make_account')
 router.route('/login')
   .post(function(req, res){
     Account.findOne({name: req.body.name},function(err, account){
-
+      console.log(req.body);
       if(err){
         return res.send(err);
       }
@@ -313,7 +313,16 @@ router.route('/toprated/:genre')
 
 // Api home page
 router.get('/', function(req, res) {
-    res.render('api', { title: 'Movie Rater App API' });
+  Account.findOne({_id: req.session.user}, function(err, account){
+    if(err){
+      return res.send(err);
+    }
+    var name = "Anon"
+    if(account){
+      name = account.name;
+    }
+    res.render('api', { title: 'Movie Rater App API', name: name });
+  });
 });
 
 module.exports = router;
