@@ -27,6 +27,7 @@ router.route('/make_account')
     Account.findOne({name: req.body.name}, function(err, account){
       if(account === null){
         var account = new Account(req.body);
+        account.ratings = [];
 
         account.save(function(err) {
         if (err)
@@ -220,50 +221,71 @@ router.route('/rate/:id')
 
 router.route('/rate')
   .post(function(req, res){
-    Movie.findOne({DBid: req.body.id}, function(err, movie){
+    Account.findOne({_id: req.session.user}, function(err, account){
       if(err){
         return res.send(err);
       }
-
-
-      if(!req.body.val){
-        return res.json({message: 'No value specified'});
-      }
-      var vote = req.body.val;
-      vote = Math.min(vote, 5);
-      vote = Math.max(vote, 0);
-
-
-      if(movie !== null){
-        movie.rating = ((movie.votes * movie.rating) + vote)/(movie.votes + 1);
-        movie.votes += 1;
-
-        movie.save(function(err){
-          if(err){
-            res.json({ message: err });
+      var voted = false;
+      if(account){
+        for(var i=0; i<account.ratings.length; i++){
+          if(account.ratings[i].DBid == req.body.id){
+            voted = true;
+            break;
           }
-        res.json({message: 'Voting correct'});
+        }
+        if(!voted){
+          Movie.findOne({DBid: req.body.id}, function(err, movie){
+            if(err){
+              return res.send(err);
+            }
 
-        })
+            if(!req.body.val){
+              return res.json({message: 'No value specified'});
+            }
+            var vote = req.body.val;
+            vote = Math.min(vote, 5);
+            vote = Math.max(vote, 0);
+
+            if(movie !== null){
+              movie.rating = ((movie.votes * movie.rating) + vote)/(movie.votes + 1);
+              movie.votes += 1;
+
+              movie.save(function(err){
+                if(err){
+                  res.json({ message: err });
+                }
+              });
+              account.ratings.push({DBid: req.body.id, rating: req.body.val});
+
+              account.save(function(err){
+                if(err){
+                  res.json({ message: err });
+                }
+              });
+            }else{
+              var movie = new Movie();
+              movie.DBid = req.body.id;
+              movie.title = req.body.title;
+              movie.poster = req.body.poster;
+              movie.genres = JSON.parse(req.body.genres);
+              movie.rating = vote;
+              movie.votes = 1;
+
+              movie.save(function(err){
+                if(err){
+                  res.json({ message: err });
+                }
+
+              });
+            }
+            res.json({message: 'You have voted'});
+          });
+        }else{
+          res.json({ message: 'You already voted' });
+        }
       }else{
-        var movie = new Movie();
-        movie.DBid = req.body.id;
-        movie.title = req.body.title;
-        movie.poster = req.body.poster;
-        movie.genres = JSON.parse(req.body.genres);
-        movie.rating = vote;
-        movie.votes = 1;
-
-        movie.save(function(err){
-          if(err){
-            res.json({ message: err });
-          }
-
-          res.json({ message: 'Movie added to DB'});
-
-        });
+        res.json({ message: 'You need to log in' });
       }
-
     });
   });
 

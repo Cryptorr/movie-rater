@@ -83,7 +83,7 @@ $(window).load(function(){
       form.name.focus();
       return false;
     }
-    re = /^\w+$/;
+    var re = /^\w+$/;
     if(!re.test(form.name.value)) {
       $('#registermessage').html("Username may only contain letters, numbers and underscores!");
       form.name.focus();
@@ -154,7 +154,7 @@ $(window).load(function(){
     };
     //console.log(data);
     serverRequest('/api/rate', 'POST', data, function(d){
-      alert("Thanks for rating a movie!");
+      $('#ratemessage').html(d.message);
     });
   });
 
