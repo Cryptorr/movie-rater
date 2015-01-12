@@ -5,8 +5,9 @@ block link
 
 block content
   h1= title
+  h3.frtitle group members
   p
-    ul#names Names of group members
+    ul#names
         li Sven den Hartog
         li Appie Kalaç
         li Sergio van Passel
@@ -28,15 +29,11 @@ block content
       br
       br
       | This site creates a new social network where people can share their ideas about movies and about what they like. Offcourse, the site should stay user friendly at all time, even when users interact. That's why we came up with the idea of liking comments. The most liked comments get a better position in the comment box. The amount of likes measures the amount of usefullness of the comment. In this way, we filter the comment box a little of less-contributing comments and let people read what they want to read.
-
-
-
+      br
+      br
  
   h3.frtitle Data
     p.frsegment
-      br
-      i Which	data	sources	that are	available	on	the	Web	are	you	using? Include	a	URL to	the	API	and/or	datasets	that	you	are	using.
-      br
       br
       | We use The Movie Database API (
       a(href="http://docs.themoviedb.apiary.io/") http://docs.themoviedb.apiary.io/
@@ -47,6 +44,8 @@ block content
       br
       | By using this API, we gain information we use on each moviepage and on the homepage. In the movie page, we see a summary, genres, release-date, length, budget used for production and the companies that worked realising this movie. This is information that can appeal to a broad range of users (from action-seekers to bollywood lovers). This broad range of information also strengthened our choice for the API of themoviedb.org.
       div(id="picture_report_info")
+      br
+      br
   h3.frtitle Technical architecture
     p.frsegment
       br
@@ -61,7 +60,8 @@ block content
         li Rectangle: User action.
         li Diamond:   Decision by program.
         li Rhomboid:  Data.
- 
+      br
+
   h3.frtitle User data
     p.frsegment
       br
