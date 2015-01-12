@@ -112,11 +112,17 @@ router.get('/movie/:id', function(req, res) {
 			return res.send(err);
 		}
 		var name = "Anon"
+		var rating = 0;
 		if(account){
 			name = account.name;
+			for(var i=0; i<account.ratings.length; i++){
+				if(account.ratings[i].DBid == req.params.id){
+					rating = account.ratings[i].rating;
+				}
+			}
 		}
 		movieDB(req.body, '/3/movie/' + req.params.id, function(data){
-			res.render('movie', { title: 'Movie Rater App - ' + data.title, name: name, data: data});
+			res.render('movie', { title: 'Movie Rater App - ' + data.title, name: name, rating: rating, data: data});
 		});
 	});
 });
