@@ -5,8 +5,9 @@ block link
 
 block content
   h1= title
+  h3.frtitle group members
   p
-    ul#names Names of group members
+    ul#names
         li Sven den Hartog
         li Appie Kalaç
         li Sergio van Passel
@@ -28,15 +29,11 @@ block content
       br
       br
       | This site creates a new social network where people can share their ideas about movies and about what they like. Offcourse, the site should stay user friendly at all time, even when users interact. That's why we came up with the idea of liking comments. The most liked comments get a better position in the comment box. The amount of likes measures the amount of usefullness of the comment. In this way, we filter the comment box a little of less-contributing comments and let people read what they want to read.
-
-
-
+      br
+      br
  
   h3.frtitle Data
     p.frsegment
-      br
-      i Which	data	sources	that are	available	on	the	Web	are	you	using? Include	a	URL to	the	API	and/or	datasets	that	you	are	using.
-      br
       br
       | We use The Movie Database API (
       a(href="http://docs.themoviedb.apiary.io/") http://docs.themoviedb.apiary.io/
@@ -47,6 +44,8 @@ block content
       br
       | By using this API, we gain information we use on each moviepage and on the homepage. In the movie page, we see a summary, genres, release-date, length, budget used for production and the companies that worked realising this movie. This is information that can appeal to a broad range of users (from action-seekers to bollywood lovers). This broad range of information also strengthened our choice for the API of themoviedb.org.
       div(id="picture_report_info")
+      br
+      br
   h3.frtitle Technical architecture
     p.frsegment
       br
@@ -61,22 +60,28 @@ block content
         li Rectangle: User action.
         li Diamond:   Decision by program.
         li Rhomboid:  Data.
- 
+      br
+
   h3.frtitle User data
     p.frsegment
       br
-      i Which	user	data	do	you	track	and	how	do	you	use	this	data?
+      | Our application tracks the comments and ratings that accounts make. It's stored in the mongo database by ID of the user. We don't track what movie pages our users visit, this is however deductible if they rate or comment on the page. We display the comments users make on each movie page, so that they can interact and discuss the movie with others. The ratings are used to calculate the average rating our users give to a movie. They are also used to recommend movies for users to watch next.
       br
       br
-      | Our application tracks the comments and ratings that accounts make. It's stored in the mongo database. We don't track what movie pages our users visit. This is however deductible if they rate or comment on the page. We display the comments users make on each movie page, so that they can interact and discuss the movie with others. The ratings are used to calculate the average rating our users give to a movie. They are also used to recommend movies for users to watch next.
   h3.frtitle Reflection
     p.frsegment
       br
-      i How	is	your	work	related	to	the	topics	taught	in	this	course?	What	did	you	learn in	this	course?
+      | The lectures introduced a number of technologies we could use to build our own web application. These include html, css, jquery, javascript, python, django, the use of api's, express, node.js and more. After we brainstormed about our idea of movie-rater, we chose some technologies that would fit best in our application. These are the technologies discussed in the technical architecture. So we got the basic knowledge about most of these technologies in the lectures, instructions and exercises.  By using tutorials online on the internet, we deepened our knowledge of the technologies. 
       br
       br
-      | The lectures introduced a number of technologies we could use to build our own web application. These include html, css, jquery, javascript, python, django, the use of api's, express, node.js and more. From this list we picked the technologies we wanted to use. These are the technologies discussed in the technical architecture. So we got the basic knowledge about most of these technologies in the lectures, instructions and exercises. Then we deepened the knowledge of the technologies we had chosen a...(line truncated)...
-  h3.frtitle Effort
+      | Making an application like this is fun, but it takes in a lot of time. Effort in the form of trial-and-error and learning further was needed to come to this result. There are surely things to be added in te coming weeks. These would be the ability to like comments, and sort comments in the comment box by the amount of likes. Furthermore the design could be upgraded, some design choices are a little harsh on the eye and could be made more mature. Also, we could upgrade the browse engine to match the user's preferences and maybe we could make a forum where people discuss topics about movies apart from one movie specifically. In short, a lot of ideas and little time.
+      br
+      br
+  h3.frtitle Effort 
     p.frsegment
       br
-      i How	much	effort	did	it	take	to	implement	the	project	and	how	did	you	distribute it	in	your	group?	 Indicate	clearly	how	much	of	the	total	effort	was	spent	by	each team	member	– e.g.	name	member	1:	30%,	member	2:	30%,	member	3:	40%.
+      ul#flow
+        li Sven den Hartog - 25%
+        li Appie Kalaç - 25%
+        li Sergio van Passel - 25%
+        li Brent van Strien - 25%
