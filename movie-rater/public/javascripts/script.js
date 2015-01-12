@@ -166,6 +166,7 @@ $(window).load(function(){
     });
   }
 });
+<<<<<<< HEAD
 
 /* needs further work
 window.addEventListener("resize", function() {
@@ -186,3 +187,5 @@ window.addEventListener("resize", function() {
   });
 });
 */
+=======
+>>>>>>> c500afbe991ddc3a09df6cc3bd7384ec748cbfba
