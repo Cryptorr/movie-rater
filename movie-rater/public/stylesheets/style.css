@@ -10,6 +10,12 @@ body {
   margin-right: 10%;
 }
 
+#home-text {
+  visibility: hidden;
+  margin-left: 20px;
+  font-size:20px;
+}
+
 .logindropdown {
   width:300px;
   padding: 10px 30px;
@@ -20,8 +26,12 @@ p.frsegment {
   font-family: arial, Georgia, Serif;
 }
 
+.popularMovies {
+  text-align: center;
+}
+
 .popMovieImg {
-  float: left;
+  display: inline-block;
   width: 185px;
   margin: 10px;
 }

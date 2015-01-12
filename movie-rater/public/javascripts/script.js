@@ -127,7 +127,26 @@ $(window).load(function(){
         )
       );
     };
+    $('#home-text').css("visibility", "visible");
   });
+
+  /* needs further work
+  //We want to display two rows of 5 popular movies on the homepage if the window resolution is wide enough
+  window.onresize = function(event) {
+    var w = window.innerWidth;
+    console.log(w);
+    //if it's wide enough
+    if (w>1300) {
+      //remove inline-block property to image 5
+      //$('#popMovieImg4').css("display" , "block");
+    }
+    //if it's not wide enough
+    else {
+      //add inline-block property to image 5
+      //$('#popMovieImg4').css("display" , "inline-block");
+    }
+  };
+  */
 
   // Search movieDB for related pictures
   $('#imagesearch').bind('input propertychange', function() {
