@@ -7,7 +7,7 @@ block content
   h1 Register
   p Here you can register your own account, so you can comment under your name.
   div.registerbox
-    form(class"form-horizontal", name="login", action="/api/make_account", method="post", onsubmit="return checkPass(this);")
+    form#registerform(class"form-horizontal", name="login")
       div(class="form-group")
         label(for="inputUser")
           |Username
@@ -23,3 +23,4 @@ block content
       div(class="form-group")
         button(class="btn btn-default", type="submit")
           |Register
+        span#registermessage(class="label label-info")

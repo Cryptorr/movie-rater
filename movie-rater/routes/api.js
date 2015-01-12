@@ -35,7 +35,7 @@ router.route('/make_account')
         res.send({ message: 'Account made!', data: account });
       });
       }else{
-        res.json({mssage: "Account already exists!"});
+        res.json({message: "Account already exists!"});
       }
     });
   })

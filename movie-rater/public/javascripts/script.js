@@ -45,32 +45,8 @@ function refreshHome(data){
 
 //check if username is valid and passwords are valid/equal
 function checkPass(form) {
-  if(form.name.value == "") {
-    alert("Username cannot be blank!");
-    form.name.focus();
-    return false;
-  }
-  re = /^\w+$/;
-  if(!re.test(form.name.value)) {
-    alert("Username may only contain letters, numbers and underscores!");
-    form.name.focus();
-    return false;
-  }
-  if(form.pass.value == "" || form.pwd2.value == "") {
-    alert("Please fill in both password fields");
-    form.pass.focus();
-    return false;
-  }
-  if(form.pass.value != form.pwd2.value) {
-    alert("Error: Passwords were not equal, so no account could be created");
-    form.pass.focus();
-    return false;
-  }
-  if(!re.test(form.pass.value)) {
-    alert("Password may only contain letters, numbers and underscores!");
-    form.pass.focus();
-    return false;
-  }
+
+  return true;
 };
 
 $(window).load(function(){
@@ -96,6 +72,45 @@ $(window).load(function(){
       if(d.message == "Logged in!"){
         location.reload();
       }
+    });
+    return false;
+  });
+
+  $('#registerform').submit(function(){
+    var form = this;
+    if(form.name.value == "") {
+      $('#registermessage').html("Username cannot be blank!");alert();
+      form.name.focus();
+      return false;
+    }
+    re = /^\w+$/;
+    if(!re.test(form.name.value)) {
+      $('#registermessage').html("Username may only contain letters, numbers and underscores!");
+      form.name.focus();
+      return false;
+    }
+    if(form.pass.value == "" || form.pwd2.value == "") {
+      $('#registermessage').html("Please fill in both password fields");
+      form.pass.focus();
+      return false;
+    }
+    if(form.pass.value != form.pwd2.value) {
+      $('#registermessage').html("Passwords were not equal, so no account could be created");
+      form.pass.focus();
+      return false;
+    }
+    if(!re.test(form.pass.value)) {
+      $('#registermessage').html("Password may only contain letters, numbers and underscores!");
+      form.pass.focus();
+      return false;
+    }
+    var data={
+      name: $('#inputUser').val(),
+      pass: $('#inputPass1').val()
+    }
+
+    serverRequest('/api/make_account', 'POST', data, function(d){
+      $('#registermessage').html(d.message);
     });
     return false;
   });
