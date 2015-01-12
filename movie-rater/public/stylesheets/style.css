@@ -16,6 +16,28 @@ body {
   font-size:20px;
 }
 
+#picture_report_fullscreen {
+	
+	background-image: url(../images/movie-rater-rate.png);
+	background-size: 100%;
+	width:900px;
+	height:495px;
+	background-repeat:no-repeat;
+	border: 1px solid #666;
+
+}
+
+#picture_report_info {
+	
+	background-image: url(../images/movie-rater-info.png);
+	background-size: 100%;
+	width:500px;
+	height:520px;
+	background-repeat:no-repeat;
+	border: 1px solid #666;
+
+}
+
 .logindropdown {
   width:300px;
   padding: 10px 30px;
