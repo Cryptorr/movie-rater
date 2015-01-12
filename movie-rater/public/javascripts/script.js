@@ -177,19 +177,19 @@ $(window).load(function(){
     });
   });
 
-  $('#sendcomment').click(function() {
+  $('#commentform').submit(function() {
     var data = {
         id  : moviedata.id,
         title : moviedata.title,
         poster : moviedata.poster_path,
         genres : moviegenres,
-        content : $('#comment').val(),
-        user : "Henk"
+        content : $('#comment').val()
     };
     //console.log(data);
     serverRequest('/api/comment', 'POST', data, function(d){
-      alert("Thanks for commenting on a movie!");
+      $('#commenttable').append("<tr><td>" + d.data.user + "</td><td>" + d.data.content + "</td></tr>");
     });
+    return false;
   });
 
   if($('#commenttable').length){
