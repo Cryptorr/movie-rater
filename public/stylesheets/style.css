@@ -1,0 +1,209 @@
+.header {
+  height: 60px;
+}
+
+body {
+  background-image: url(../images/bg.png);
+  background-position: center top;
+  background-size: 100% auto;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#home-text {
+  visibility: hidden;
+  margin-left: 20px;
+  font-size:20px;
+}
+
+#picture_report_fullscreen {
+	
+	background-image: url(../images/movie-rater-rate.png);
+	background-size: 100%;
+	width:900px;
+	height:495px;
+	background-repeat:no-repeat;
+	border: 1px solid #666;
+
+}
+
+#picture_report_info {
+	
+	background-image: url(../images/movie-rater-info.png);
+	background-size: 100%;
+	width:500px;
+	height:520px;
+	background-repeat:no-repeat;
+	border: 1px solid #666;
+
+}
+
+.logindropdown {
+  width:300px;
+  padding: 10px 30px;
+}
+
+p.frsegment {
+  font-size:16px;
+  font-family: arial, Georgia, Serif;
+}
+
+.popularMovies {
+  text-align: center;
+}
+
+.popMovieImg {
+  display: inline-block;
+  width: 185px;
+  margin: 10px;
+}
+
+#movieimg {
+  float: right;
+  text-align: center;
+  font-size:1.2em;
+  margin-right:30px;
+  margin-top:30px;
+}
+
+#moviedescription {
+  width:900px;
+  margin-top:30px;
+}
+
+.movie-gallery {
+  background-color: #dddddd;
+  min-height: 250px;
+  padding: 0px;
+  margin-left: 15px;
+  margin-right: 15px;
+  position: relative;
+}
+
+.home-span {
+  text-align: center;
+}
+
+.gallery-wrap {
+  margin: 10px auto;
+  overflow: hidden;
+  width: 732px;
+  height: 175px;
+  max-width: 100%;
+}
+.gallery {
+  position: relative;
+  left: 0; top: 0;
+}
+.gallery__item {
+  float: left;
+  list-style: none;
+  margin-right: 20px;
+  cursor: pointer;
+  position:relative;
+}
+.gallery__img {
+  vertical-align:top;
+  display: block;
+  border: 4px solid #000000;
+  height: 175px; width: auto;
+  z-index:-2;
+}
+
+.gallery__controls {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 732px;
+  max-width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.gallery__controls-prev {
+  cursor: pointer;
+  float: left;
+}
+.gallery__controls-next {
+  cursor: pointer;
+  float: right;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix { *zoom: 1;}
+
+.imagesearchbar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+#movie-results {
+  text-align: left;
+  margin-left: 10px;
+}
+
+/*css code for custom navbar */
+.navbar-default {
+  background-color: #9b0000;
+  border-color: #6b0000;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #6b0000;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #6b0000;
+}
+.navbar-default .navbar-toggle {
+  border-color: #6b0000;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #6b0000;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #6b0000;
+  }
+}
