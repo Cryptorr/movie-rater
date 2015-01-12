@@ -2,6 +2,7 @@
 var totalWidth = 0;
 var maxScrollPosition = 0;
 
+//access an api
 function serverRequest(endpoint, method, json, success){
   $.ajax({
     type: method,
@@ -17,6 +18,7 @@ function serverRequest(endpoint, method, json, success){
   });
 }
 
+//this adds movie images with title on the browse page
 function refreshHome(data){
   //Delete Old Images
   $("#movie-results").empty();

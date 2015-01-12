@@ -17,7 +17,7 @@ body {
 }
 
 #picture_report_fullscreen {
-	
+
 	background-image: url(../images/movie-rater-rate.png);
 	background-size: 100%;
 	width:900px;
@@ -28,7 +28,7 @@ body {
 }
 
 #picture_report_info {
-	
+
 	background-image: url(../images/movie-rater-info.png);
 	background-size: 100%;
 	width:500px;
@@ -39,10 +39,10 @@ body {
 }
 
 #picture_report_flow {
-	
+
 	background-image: url(../images/movie-rater-flow.png);
 	background-size: 99%;
-	width:1200px; 
+	width:1200px;
 	height: 800px;
 	background-repeat:no-repeat;
 
@@ -80,11 +80,16 @@ p.frsegment {
   font-size:1.2em;
   margin-right:30px;
   margin-top:30px;
+  width: 396px;
 }
 
 #moviedescription {
   width:900px;
   margin-top:30px;
+}
+
+#comments {
+  float:left;
 }
 
 .movie-gallery {
