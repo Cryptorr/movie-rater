@@ -121,8 +121,17 @@ router.get('/movie/:id', function(req, res) {
 				}
 			}
 		}
-		movieDB(req.body, '/3/movie/' + req.params.id, function(data){
-			res.render('movie', { title: 'Movie Rater App - ' + data.title, name: name, rating: rating, data: data});
+		Movie.findOne({DBid: req.params.id}, function(err, movie){
+			if(err){
+				return res.send(err);
+			}
+			var average;
+			if(movie && movie.votes > 0){
+				average = movie.rating;
+			}
+			movieDB(req.body, '/3/movie/' + req.params.id, function(data){
+				res.render('movie', { title: 'Movie Rater App - ' + data.title, name: name, rating: rating, average: average, data: data});
+			});
 		});
 	});
 });

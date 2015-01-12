@@ -3,6 +3,7 @@ extends layout
 block link
   -var moviedata= data;
   -var movierating= rating;
+  -var ratingaverage= Math.round(average * 10) / 10;
   -var genres= [];
   -for(var i = 0; i<moviedata.genres.length; i++){
   -  genres.push(JSON.stringify(moviedata.genres[i]));
@@ -20,6 +21,12 @@ block content
     p
     h1
       p= moviedata.title
+    if (ratingaverage != undefined)
+      b Rating:
+      p= ratingaverage + "/5"
+    else
+      b Rating:
+      p= "Not yet rated. Rate this movie now!"
     b Overview:
     p= moviedata.overview
     if (moviedata.genres != "")
