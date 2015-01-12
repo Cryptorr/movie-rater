@@ -90,7 +90,6 @@ $(window).load(function(){
   serverRequest('/api/toprated', 'GET', data, function(d) {
     console.log(d[0].DBid);
     for (i=0; i<d.length; i++) {
-<<<<<<< HEAD
       $(".popularMovies").append(
         $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
           $("<a/>").attr("href", '/movie/' + d[i].DBid).append(
@@ -98,11 +97,6 @@ $(window).load(function(){
           )
         )
       );
-=======
-      $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w92' + d[i].poster)
-      //$("<a/>").attr("class", "gallery__link").attr("href", '/movie/' + d[i].DBid)
-      .appendTo("#movie-results-home");
->>>>>>> origin/master
     };
   });
 
