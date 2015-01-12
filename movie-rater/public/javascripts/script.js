@@ -166,26 +166,3 @@ $(window).load(function(){
     });
   }
 });
-<<<<<<< HEAD
-
-/* needs further work
-window.addEventListener("resize", function() {
-  console.log("Does it fire?");
-  //Refresh most popular movies on homepage
-  serverRequest('/api/toprated', 'GET', data, function(d) {
-    console.log(d[0].DBid)
-    $(".popularMovies").empty();
-    for (i=0; i<d.length; i++) {
-      $(".popularMovies").append(
-        $("<div/>").attr("class", "popMovieImg").attr("id", "popMovieImg" + i).append(
-          $("<a/>").attr("href", '/movie/' + d[i].DBid).append(
-            $("<img/>").attr("src", 'http://image.tmdb.org/t/p/' + 'w185' + d[i].poster)
-          )
-        )
-      );
-    };
-  });
-});
-*/
-=======
->>>>>>> c500afbe991ddc3a09df6cc3bd7384ec748cbfba
