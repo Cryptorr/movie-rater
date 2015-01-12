@@ -10,6 +10,11 @@ body {
   margin-right: 10%;
 }
 
+.logindropdown {
+  width:300px;
+  padding: 10px 30px;
+}
+
 p.frsegment {
   font-size:16px;
   font-family: arial, Georgia, Serif;
@@ -22,7 +27,7 @@ p.frsegment {
 }
 
 #popMovieImg4 {
-  
+
 }
 
 #movieimg {
