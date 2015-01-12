@@ -21,7 +21,7 @@ block content
     p
     h1
       p= moviedata.title
-    if (ratingaverage)
+    if (ratingaverage || ratingaverage == 0)
       b Rating:
       p= ratingaverage + "/5"
     else
