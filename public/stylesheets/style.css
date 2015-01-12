@@ -38,6 +38,22 @@ body {
 
 }
 
+#picture_report_flow {
+	
+	background-image: url(../images/movie-rater-flow.png);
+	background-size: 99%;
+	width:1200px; 
+	height: 800px;
+	background-repeat:no-repeat;
+
+}
+
+#flow {
+  font-size:16px;
+  font-family: arial, Georgia, Serif;
+  font-style:italic;
+}
+
 .logindropdown {
   width:300px;
   padding: 10px 30px;
