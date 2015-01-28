@@ -121,6 +121,7 @@ $(window).load(function(){
 
     serverRequest('/api/make_account', 'POST', data, function(d){
       $('#registermessage').html(d.message);
+      window.location.href = "https://webtech-movierater.herokuapp.com/";
     });
     return false;
   });
