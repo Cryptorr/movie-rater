@@ -51,6 +51,14 @@ function checkPass(form) {
   return true;
 };
 
+//this function is called when somebody uses the search form in the navbar
+function processSearch(searchQuery) {
+  //we need to replace all spacebar input with %20
+  correctedQuery = searchQuery.replace(/ /g,"%20");
+  gotoUrl = "https://webtech-movierater.herokuapp.com/browse#" + correctedQuery;
+  window.location.href = gotoUrl;
+};
+
 $(window).load(function(){
    //Check url hash
   if(document.location.hash.length > 0){
@@ -132,23 +140,23 @@ $(window).load(function(){
     $('#home-text').css("visibility", "visible");
   });
 
-  /* needs further work
-  //We want to display two rows of 5 popular movies on the homepage if the window resolution is wide enough
-  window.onresize = function(event) {
-    var w = window.innerWidth;
-    console.log(w);
-    //if it's wide enough
-    if (w>1300) {
-      //remove inline-block property to image 5
-      //$('#popMovieImg4').css("display" , "block");
+  //handling of search bar in navigation bar
+  //this will prevent automatic submitting of the submit form, we want to use them for a different purpose
+  $("#navForm").submit(function (e) {
+    e.preventDefault();
+  });
+  //when pressing enter in a sbumit form field, process the search
+  $("#navForm").keypress(function (e) {
+    if(e.which == 13) {
+      var searchQuery = $("#navInput").val();
+      processSearch(searchQuery);
     }
-    //if it's not wide enough
-    else {
-      //add inline-block property to image 5
-      //$('#popMovieImg4').css("display" , "inline-block");
-    }
-  };
-  */
+  });
+  //when pressing the search button, process the search
+  $("#navButton").click(function() {
+    var searchQuery = $("#navInput").val();
+    processSearch(searchQuery);
+  });
 
   // Search movieDB for related pictures
   $('#imagesearch').bind('input propertychange', function() {
