@@ -3,4 +3,4 @@ movie-rater
 
 Web technology group project
 
-#Damn right
+Hosted on: https://webtech-movierater.herokuapp.com/
